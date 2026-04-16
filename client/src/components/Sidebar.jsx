@@ -21,17 +21,20 @@ function Sidebar({
 
 
   const handleKeep = () => {
-    if (activeTile === null) return;
+  if (!queue || queue.length === 0) return;
 
-    if (keep === null) {
-      setKeep(activeTile);
-      setActiveTile(null);
-    } else {
-      const temp = keep;
-      setKeep(activeTile);
-      setActiveTile(temp);
-    }
-  };
+  const current = queue[0];
+
+  if (keep === null) {
+    // store tile
+    setKeep(current);
+    setQueue(prev => [...prev.slice(1), generateTile()]);
+  } else {
+    // swap
+    setQueue(prev => [keep, ...prev.slice(1)]);
+    setKeep(current);
+  }
+};
 
  
   const handleTrash = () => {
