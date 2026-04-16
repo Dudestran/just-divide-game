@@ -86,11 +86,11 @@ const resolveMerges = (initialGrid) => {
 
           grid = newGrid;
 
-          break; // 🔥 STOP after ONE merge
+          break; 
         }
       }
 
-      if (foundMerge) break; // 🔥 restart loop fresh
+      if (foundMerge) break; 
     }
   }
 

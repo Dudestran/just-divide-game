@@ -1,5 +1,6 @@
 function Sidebar({ 
     queue, 
+    setQueue,
   setActiveTile, 
   activeTile,
   keep, 
@@ -12,6 +13,11 @@ function Sidebar({
     if (index !== 0) return;
     setActiveTile(value);
   };
+
+  const generateTile = () => {
+  const values = [2, 3, 4, 6, 8, 9, 12];
+  return values[Math.floor(Math.random() * values.length)];
+};
 
 
   const handleKeep = () => {
@@ -29,11 +35,16 @@ function Sidebar({
 
  
   const handleTrash = () => {
-    if (activeTile === null || trashCount <= 0) return;
+  if (trashCount <= 0) return;
 
-    setActiveTile(null);
-    setTrashCount(prev => prev - 1);
-  };
+  setQueue(prev => {
+    const updated = [...prev.slice(1), generateTile()];
+    console.log("New queue:", updated); 
+    return updated;
+  });
+
+  setTrashCount(prev => prev - 1);
+};
 
   return (
     <div className="right-panel">
@@ -60,7 +71,7 @@ function Sidebar({
 
       {/* TRASH */}
       <div className="trash" onClick={handleTrash}>
-  TRASH
+  TRASH_
   <br />
   <span>{trashCount} </span>
 </div>

@@ -71,7 +71,7 @@ useEffect(() => {
 }, [score]);
   return (
     <div className="game-container">
-      <TITLE score={score} level={level} />
+      <TITLE score={score} level={level} bestScore={bestScore} />
 
       <div className="game-body">
         <Grid
@@ -90,6 +90,7 @@ useEffect(() => {
           queue={queue}
           setActiveTile={setActiveTile}
           activeTile={activeTile}
+          setQueue={setQueue}
           keep={keep}
           setKeep={setKeep}
           trashCount={trashCount}
